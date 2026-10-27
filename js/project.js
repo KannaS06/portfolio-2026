@@ -18,16 +18,16 @@
       <h1 class="p-title" data-split data-fit style="--d:.35s">${p.name}</h1>
       <p class="p-desc fd" style="--d:.8s">${p.desc}</p>
       <dl class="p-meta rv" style="--d:1s">
-        <dt>Date</dt><dd>${p.date}</dd>
-        <dt>Tools</dt><dd>${p.tools}</dd>
-        <dt>Type</dt><dd>${p.type}</dd>
+        <dt>${t('pDate')}</dt><dd>${p.date}</dd>
+        <dt>${t('pTools')}</dt><dd>${p.tools}</dd>
+        <dt>${t('pType')}</dt><dd>${p.type}</dd>
       </dl>
-      ${p.url ? `<a class="p-visit ulink rv" style="--d:1.1s" href="${p.url}" target="_blank" rel="noopener">Visit the website ↗</a>` : ''}
+      ${p.url ? `<a class="p-visit ulink rv" style="--d:1.1s" href="${p.url}" target="_blank" rel="noopener">${t('pVisit')}</a>` : ''}
     </aside>
     <section class="p-media">
       <figure class="p-hero reveal">${img(p.hero || p.cover, p.name, true)}</figure>
       ${p.desktop.map((s, k) => `<figure class="reveal">${img(s, `${p.name} — desktop ${k + 1}`, k === 0)}</figure>`).join('')}
-      <div class="p-label reveal"><span>(Responsive)</span><span class="muted">Mobile — ${p.mobile.length} screens</span></div>
+      <div class="p-label reveal"><span>(Responsive)</span><span class="muted">Mobile — ${p.mobile.length} ${t('pScreens')}</span></div>
       <div class="p-mobiles">
         ${p.mobile.map((s, k) => `<figure class="reveal" style="transition-delay:${k * 110}ms">${img(s, `${p.name} — mobile ${k + 1}`)}</figure>`).join('')}
       </div>
@@ -36,6 +36,6 @@
   const prev = PROJECTS[(i - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(i + 1) % PROJECTS.length];
   document.getElementById('pnav').innerHTML = `
-    <a class="reveal" href="project.html?id=${prev.id}" data-label="${prev.name}"><span class="muted">← Previous</span><span class="big">${prev.name}</span></a>
-    <a class="reveal" href="project.html?id=${next.id}" data-label="${next.name}"><span class="muted">Next →</span><span class="big">${next.name}</span></a>`;
+    <a class="reveal" href="project.html?id=${prev.id}" data-label="${prev.name}"><span class="muted">${t('pPrev')}</span><span class="big">${prev.name}</span></a>
+    <a class="reveal" href="project.html?id=${next.id}" data-label="${next.name}"><span class="muted">${t('pNext')}</span><span class="big">${next.name}</span></a>`;
 })();

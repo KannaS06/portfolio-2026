@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Playground — Kaola Abidi</title>
+  <title data-i18n="titlePlayground">Playground — Kaola Abidi</title>
   <script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.classList.add('js')})()</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,27 +11,27 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="pg-body" data-page="Playground">
-  <div class="pg-stage" id="stage" aria-label="Playground — drag to explore"></div>
+  <div class="pg-stage" id="stage" aria-label="Playground — drag to explore" data-i18n-aria="pgStage"></div>
 
   <header class="site-header">
     <a href="index.html" class="brand rv" style="--d:.1s" data-label="Index">Kaola Abidi</a>
-    <a href="index.html" class="hd-mid ulink rv" style="--d:.2s" data-label="Index">(Back)</a>
-    <nav class="rv" style="--d:.3s"><a class="ulink" href="about.html" data-label="About">About</a><button class="ulink" data-contact>Contact</button></nav>
+    <a href="index.html" class="hd-mid ulink rv" style="--d:.2s" data-label="Index" data-i18n="back">(Back)</a>
+    <nav class="rv" style="--d:.3s"><a class="ulink" href="about.html" data-label="About" data-i18n="navAbout">About</a><button class="ulink" data-contact data-i18n="navContact">Contact</button></nav>
   </header>
 
   <footer class="site-footer">
-    <span class="pg-hint rv" style="--d:.9s"><b>(Drag)</b> to explore — <b>(Click)</b> to open</span>
+    <span class="pg-hint rv" style="--d:.9s" data-i18n="pgHint"><b>(Drag)</b> to explore — <b>(Click)</b> to open</span>
     <span></span>
     <span class="ft-right rv" style="--d:1s"><span class="accent">(06)</span> Playground<br><span class="muted" id="count"></span></span>
   </footer>
 
-  <div class="cursor small" id="cursor">Drag</div>
+  <div class="cursor small" id="cursor" data-i18n="pgDrag">Drag</div>
 
-  <div class="lightbox" id="lb" role="dialog" aria-label="Preview">
-    <div class="lb-top"><span class="lb-count" id="lbCount"></span><button class="ulink" data-lb-close>(Close)</button></div>
-    <button class="lb-arrow lb-prev" data-lb-prev aria-label="Previous design">←</button>
+  <div class="lightbox" id="lb" role="dialog" aria-label="Preview" data-i18n-aria="lbPreview">
+    <div class="lb-top"><span class="lb-count" id="lbCount"></span><button class="ulink" data-lb-close data-i18n="close">(Close)</button></div>
+    <button class="lb-arrow lb-prev" data-lb-prev aria-label="Previous design" data-i18n-aria="lbPrev">←</button>
     <div class="lb-stage"><img id="lbImg" alt=""></div>
-    <button class="lb-arrow lb-next" data-lb-next aria-label="Next design">→</button>
+    <button class="lb-arrow lb-next" data-lb-next aria-label="Next design" data-i18n-aria="lbNext">→</button>
     <div class="lb-info">
       <div class="lb-text" id="lbText">
         <div class="muted" id="lbCat"></div>
@@ -42,6 +42,7 @@
     </div>
   </div>
 
+  <script src="js/i18n.js"></script>
   <script src="js/data.js"></script>
   <script src="js/common.js"></script>
   <script src="js/playground.js"></script>

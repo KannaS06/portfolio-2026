@@ -13,14 +13,15 @@
 <body data-page="Project">
   <header class="site-header">
     <a href="index.html" class="brand rv" style="--d:.1s" data-label="Index">Kaola Abidi</a>
-    <a href="index.html" class="hd-mid ulink rv" style="--d:.2s" data-label="Index">(Back)</a>
-    <nav class="rv" style="--d:.3s"><a class="ulink" href="about.html" data-label="About">About</a><button class="ulink" data-contact>Contact</button></nav>
+    <a href="index.html" class="hd-mid ulink rv" style="--d:.2s" data-label="Index" data-i18n="back">(Back)</a>
+    <nav class="rv" style="--d:.3s"><a class="ulink" href="about.html" data-label="About" data-i18n="navAbout">About</a><button class="ulink" data-contact data-i18n="navContact">Contact</button></nav>
   </header>
 
   <main class="project" id="project"></main>
   <nav class="p-nav" id="pnav"></nav>
 
   <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/data.js"></script>
   <script src="js/project.js"></script>
   <script src="js/common.js"></script>

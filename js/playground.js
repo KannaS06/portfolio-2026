@@ -15,7 +15,7 @@
   /* ---------- Contenu : pièces éditoriales + les 5 sites intercalés ---------- */
   const items = [];
   const web = PROJECTS.map((p) => ({
-    title: p.name, cat: 'Website', src: p.cover, href: `project.html?id=${p.id}`, web: true,
+    title: p.name, cat: t('pgWebsite'), src: p.cover, href: `project.html?id=${p.id}`, web: true,
     desc: p.desc.split('. ')[0].replace(/\.$/, '') + '.',
   }));
   const step = Math.floor(EDITORIAL.length / web.length);
@@ -25,7 +25,7 @@
   });
   items.push(...web);
   items.forEach((it, i) => { it.i = i; it.n = String(i + 1).padStart(2, '0'); });
-  document.getElementById('count').textContent = `${items.length} works`;
+  document.getElementById('count').textContent = `${items.length} ${t('pgWorks')}`;
 
   const mod = (a, b) => ((a % b) + b) % b;
   const OVER = 1.28;   // la scène est rendue 28 % plus grande que l'écran
@@ -38,7 +38,7 @@
   canvas.className = 'pg-canvas';
   stage.appendChild(canvas);
   const gl = canvas.getContext('webgl', { antialias: false, alpha: false, preserveDrawingBuffer: false });
-  if (!gl) { stage.innerHTML = '<p style="padding:120px 24px">WebGL is not available on this browser.</p>'; return; }
+  if (!gl) { stage.innerHTML = `<p style="padding:120px 24px">${t('pgNoWebgl')}</p>`; return; }
 
   function program(vs, fs) {
     const p = gl.createProgram();
@@ -426,7 +426,7 @@
     const overStage = e.target === canvas || e.target === stage;
     const n = overStage ? hit(e.clientX, e.clientY) : null;
     if (n !== hovered) { hovered = n; kick(); }
-    cursor.textContent = n ? 'Open' : 'Drag';
+    cursor.textContent = n ? t('pgOpen') : t('pgDrag');
     cursor.classList.toggle('small', !overStage);
   }
   addEventListener('pointermove', (e) => {
@@ -451,7 +451,7 @@
     $('lbCat').textContent = it.cat;
     $('lbTitle').textContent = it.title;
     $('lbDesc').textContent = it.desc || '';
-    $('lbLink').innerHTML = it.web ? `<a class="lb-link ulink" href="${it.href}" data-label="${it.title}">View project →</a>` : '';
+    $('lbLink').innerHTML = it.web ? `<a class="lb-link ulink" href="${it.href}" data-label="${it.title}">${t('pgView')}</a>` : '';
     lbImg.alt = it.title;
   }
   function preload(i) { const im = new Image(); im.src = asset(items[mod(i, items.length)].src); }

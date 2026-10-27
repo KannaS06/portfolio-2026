@@ -113,7 +113,7 @@
   ========================================================= */
   const toggle = document.createElement('button');
   toggle.className = 'theme-toggle';
-  toggle.setAttribute('aria-label', 'Changer de thème');
+  toggle.setAttribute('aria-label', t('themeSwitch'));
   toggle.innerHTML = '<span></span>';
   document.body.appendChild(toggle);
 
@@ -139,6 +139,22 @@
   });
 
   /* =========================================================
+     LANGUE : affiche l'autre langue ("FR" quand le site est en anglais).
+     Au clic, le rideau passe et la page revient dans la nouvelle langue.
+  ========================================================= */
+  const other = LANG === 'en' ? 'fr' : 'en';
+  const langBtn = document.createElement('button');
+  langBtn.className = 'lang-toggle';
+  langBtn.lang = other;
+  langBtn.textContent = other.toUpperCase();
+  langBtn.setAttribute('aria-label', t('langSwitch'));
+  document.body.appendChild(langBtn);
+  langBtn.addEventListener('click', () => {
+    try { localStorage.setItem('lang', other); } catch (e) {}
+    leaveTo(location.href.split('#')[0]); // sans #ancre, sinon la page ne se recharge pas
+  });
+
+  /* =========================================================
      CONTACT
   ========================================================= */
   const panel = document.createElement('div');
@@ -146,17 +162,17 @@
   panel.setAttribute('role', 'dialog');
   panel.setAttribute('aria-label', 'Contact');
   panel.innerHTML = `
-    <div class="cp-top"><span>Kaola Abidi</span><button class="ulink" data-close>(Close)</button></div>
+    <div class="cp-top"><span>Kaola Abidi</span><button class="ulink" data-close>${t('close')}</button></div>
     <div class="cp-body">
-      <h2>Let's <span>connect</span></h2>
+      <h2>${t('cpTitle')}</h2>
       <dl class="cp-list">
-        <dt>Email</dt><dd><button class="cp-copy ulink" data-copy="${CONTACT.email}">${CONTACT.email}<span class="copied">Copied</span></button></dd>
-        <dt>Phone</dt><dd><a class="ulink" href="${CONTACT.phoneHref}">${CONTACT.phone}</a></dd>
+        <dt>Email</dt><dd><button class="cp-copy ulink" data-copy="${CONTACT.email}">${CONTACT.email}<span class="copied">${t('cpCopied')}</span></button></dd>
+        <dt>${t('cpPhone')}</dt><dd><a class="ulink" href="${CONTACT.phoneHref}">${CONTACT.phone}</a></dd>
         <dt>Linkedin</dt><dd><a class="ulink" href="${CONTACT.linkedin}" target="_blank" rel="noopener">/in/kaola-abidi ↗</a></dd>
-        <dt>Resume</dt><dd><a class="ulink" href="${asset(CONTACT.cv)}" target="_blank" rel="noopener">Download PDF ↗</a></dd>
+        <dt>${t('cpResume')}</dt><dd><a class="ulink" href="${asset(CONTACT.cv)}" target="_blank" rel="noopener">${t('cpDownload')}</a></dd>
       </dl>
     </div>
-    <div class="cp-bottom"><span>Open to internships & work-study</span><span>©2026</span></div>`;
+    <div class="cp-bottom"><span>${t('cpOpen')}</span><span>©2026</span></div>`;
   document.body.appendChild(panel);
 
   const openContact = () => { panel.classList.add('open'); if (lenis) lenis.stop(); };

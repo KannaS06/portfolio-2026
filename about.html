@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About — Kaola Abidi</title>
+  <title data-i18n="titleAbout">About — Kaola Abidi</title>
   <script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.classList.add('js')})()</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,56 +13,57 @@
 <body data-page="About">
   <header class="site-header">
     <a href="index.html" class="brand rv" style="--d:.1s" data-label="Index">Kaola Abidi</a>
-    <a href="index.html" class="hd-mid ulink rv" style="--d:.2s" data-label="Index">(Back)</a>
-    <nav class="rv" style="--d:.3s"><a class="ulink" href="about.html" data-label="About">About</a><button class="ulink" data-contact>Contact</button></nav>
+    <a href="index.html" class="hd-mid ulink rv" style="--d:.2s" data-label="Index" data-i18n="back">(Back)</a>
+    <nav class="rv" style="--d:.3s"><a class="ulink" href="about.html" data-label="About" data-i18n="navAbout">About</a><button class="ulink" data-contact data-i18n="navContact">Contact</button></nav>
   </header>
 
   <main class="ab">
     <section class="ab-top">
-      <div class="ab-kicker rv" style="--d:.3s"><span class="accent">(About)</span><span class="muted">Graphic &amp; web design student — MMI</span></div>
+      <div class="ab-kicker rv" style="--d:.3s" data-i18n="abKicker"><span class="accent">(About)</span><span class="muted">Graphic &amp; web design student — MMI</span></div>
       <h1 class="ab-name" data-split data-fit style="--d:.35s">Kaola Abidi</h1>
     </section>
 
-    <p class="ab-statement fd" style="--d:1s">
+    <p class="ab-statement fd" style="--d:1s" data-i18n="abStatement">
       I explore how to blend functionality and artistic direction to craft
       <span class="serif accent">meaningful digital identities</span> — guided by minimalism and a desire for creative independence.
     </p>
 
     <section class="ab-grid">
       <div class="ab-col rv" style="--d:1.15s">
-        <div class="ab-label">(01) Profile</div>
-        <p>I am a graphic and web design student passionate about visual creation, branding and user experience. As an aspiring freelance designer, I'm building my path with curiosity, autonomy and intention.</p>
+        <div class="ab-label" data-i18n="abProfileLabel">(01) Profile</div>
+        <p data-i18n="abProfile">I am a graphic and web design student passionate about visual creation, branding and user experience. As an aspiring freelance designer, I'm building my path with curiosity, autonomy and intention.</p>
       </div>
       <div class="ab-col rv" style="--d:1.25s">
-        <div class="ab-label">(02) Currently</div>
-        <p>Looking for an <span class="accent">internship</span> or a <span class="accent">work-study program</span>.</p>
+        <div class="ab-label" data-i18n="abNowLabel">(02) Currently</div>
+        <p data-i18n="abNow">Looking for an <span class="accent">internship</span> or a <span class="accent">work-study program</span>.</p>
       </div>
       <div class="ab-col rv" style="--d:1.35s">
-        <div class="ab-label">(03) Toolkit</div>
+        <div class="ab-label" data-i18n="abToolsLabel">(03) Toolkit</div>
         <ul><li>Figma</li><li>Photoshop</li><li>Illustrator</li><li>HTML, CSS, JavaScript</li><li>WordPress, Bootstrap</li></ul>
       </div>
       <div class="ab-col rv" style="--d:1.45s">
-        <div class="ab-label">(04) Interests</div>
+        <div class="ab-label" data-i18n="abInterestsLabel">(04) Interests</div>
         <ul class="interests">
-          <li><button data-gif="gifs/naomi.gif">Fashion</button></li>
-          <li><button data-gif="gifs/totoro.gif">Anime</button></li>
-          <li><button data-gif="gifs/music.gif">Music</button></li>
-          <li><button data-gif="gifs/yoshi.gif">Games</button></li>
+          <li><button data-gif="gifs/naomi.gif" data-i18n="abFashion">Fashion</button></li>
+          <li><button data-gif="gifs/totoro.gif" data-i18n="abAnime">Anime</button></li>
+          <li><button data-gif="gifs/music.gif" data-i18n="abMusic">Music</button></li>
+          <li><button data-gif="gifs/yoshi.gif" data-i18n="abGames">Games</button></li>
         </ul>
       </div>
       <div class="ab-col rv" style="--d:1.55s">
-        <div class="ab-label">(05) Contact</div>
+        <div class="ab-label" data-i18n="abContactLabel">(05) Contact</div>
         <ul>
           <li><a class="ulink" id="abMail" href="#"></a></li>
           <li><a class="ulink" id="abLinkedin" href="#" target="_blank" rel="noopener">Linkedin ↗</a></li>
         </ul>
-        <a class="ab-cv" id="abCv" href="#" target="_blank" rel="noopener">Resume (PDF) <span>↗</span></a>
+        <a class="ab-cv" id="abCv" href="#" target="_blank" rel="noopener" data-i18n="abCv">Resume (PDF) <span>↗</span></a>
       </div>
     </section>
   </main>
   <img class="gif-peek" id="peek" alt="">
 
   <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/data.js"></script>
   <script>
     document.getElementById('abMail').textContent = CONTACT.email;
