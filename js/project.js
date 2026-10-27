@@ -25,7 +25,7 @@
       ${p.url ? `<a class="p-visit ulink rv" style="--d:1.1s" href="${p.url}" target="_blank" rel="noopener">Visit the website ↗</a>` : ''}
     </aside>
     <section class="p-media">
-      <figure class="p-hero reveal">${img(p.cover, p.name, true)}</figure>
+      <figure class="p-hero reveal">${img(p.hero || p.cover, p.name, true)}</figure>
       ${p.desktop.map((s, k) => `<figure class="reveal">${img(s, `${p.name} — desktop ${k + 1}`, k === 0)}</figure>`).join('')}
       <div class="p-label reveal"><span>(Responsive)</span><span class="muted">Mobile — ${p.mobile.length} screens</span></div>
       <div class="p-mobiles">
