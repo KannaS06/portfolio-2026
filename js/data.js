@@ -31,7 +31,8 @@ const PROJECTS = [
       en: "I created a website for a fictional exhibition during a redesign project for the museum 'La Maison du Bois et du Jouet' in Mazamet. The concept of this exhibition is to showcase traditional toys created from wood from their country of origin.",
       fr: 'J’ai créé le site d’une exposition fictive dans le cadre d’un projet de refonte pour le musée « La Maison du Bois et du Jouet » à Mazamet. Le concept de cette exposition est de présenter des jouets traditionnels fabriqués à partir du bois de leur pays d’origine.',
     },
-    desktop: ['essences/download.gif', 'essences/Capture d’écran 2026-05-05 191051.png', 'essences/download (4).gif', 'essences/deskessences.png'],
+    // ⚠ "dÔÇÖ├®cran" est voulu : c'est le nom (abîmé à l'envoi) du fichier en ligne pour "d’écran"
+    desktop: ['essences/download.gif', 'essences/Capture dÔÇÖ├®cran 2026-05-05 191051.png', 'essences/download (4).gif', 'essences/deskessences.png'],
     mobile: ['essences/mobil1.png', 'essences/mobil2.png', 'essences/mobil3.png', 'essences/mobil4.png'],
   },
   {
