@@ -33,7 +33,7 @@ const STR = {
     fr: 'Des <em>identités numériques</em> minimalistes et réfléchies — entre branding, édition et web.',
   },
   homeProjects: { en: 'Projects', fr: 'Projets' },
-  openTo: { en: 'Open to internships<br>&amp; work-study', fr: 'À la recherche d’un stage<br>ou d’une alternance' },
+  homeGraphic: { en: 'Graphic design', fr: 'Design graphique' }, // lien vers le playground, en bas à droite
 
   // À propos
   titleAbout: { en: 'About — Kaola Abidi', fr: 'À propos — Kaola Abidi' },
