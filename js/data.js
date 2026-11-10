@@ -52,8 +52,8 @@ const PROJECTS = [
     type: { en: 'Branding & web design', fr: 'Identité visuelle & web design' },
     date: { en: 'January 2026', fr: 'Janvier 2026' },
     tools: 'Figma',
-    cover: 'knock-out.webp',
-    hero: 'knock-out-bg.webp',
+    cover: 'knock-out/cover-bag.webp', // sac de frappe (accueil)
+    hero: 'knock-out/hero-ring.webp', // ring vu d'en haut (1re image de la page projet)
     desc: {
       en: 'Knock Out Festival is a group branding and web design project developed as part of my studies. The project included a complete visual identity, and I was responsible for designing the website mockups with a minimalist and impactful approach. This project was inspired by the charisma and cultural impact of Muhammad Ali, one of the most iconic figures in boxing.',
       fr: 'Knock Out Festival est un projet de groupe en branding et web design réalisé pendant mes études. Le projet comprenait une identité visuelle complète, et j’étais en charge des maquettes du site, avec une approche minimaliste et percutante. Ce projet s’inspire du charisme et de l’impact culturel de Mohamed Ali, l’une des figures les plus emblématiques de la boxe.',
