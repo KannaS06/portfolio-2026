@@ -13,7 +13,7 @@
         <div>${p.name} — ${p.type},</div>
         <div class="ci-type">${p.date}${p.tools ? ' · ' + p.tools : ''}</div>
       </div>
-      <div class="ph"><img src="${asset(p.cover)}" alt="${p.name}" decoding="async" data-critical></div>
+      <div class="ph"><img src="${thumb(p.cover)}" alt="${p.name}" decoding="async" data-critical></div>
       <span class="num">(${pad(i)})<i> ${p.name}</i></span>
     </a>`).join('');
 

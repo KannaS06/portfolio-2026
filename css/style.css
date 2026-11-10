@@ -268,6 +268,7 @@ html.theme-tr::view-transition-new(root) { animation: none; mix-blend-mode: norm
 .p-media { padding: 110px 0 60px; display: grid; gap: calc(var(--gutter) * 1.4); }
 .p-media figure { overflow: hidden; background: var(--accent-soft); }
 .p-media figure img { width: 100%; height: auto; transition: transform 1.8s var(--ease-out); }
+.p-media figure video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 .p-media figure.reveal img { transform: scale(1.08); }
 .p-media figure.reveal.in img { transform: none; }
 .p-hero img { aspect-ratio: 16 / 10; object-fit: cover; }

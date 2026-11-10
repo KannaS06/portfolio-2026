@@ -153,7 +153,7 @@
       nodes.forEach((n) => { if (n.it.src === it.src) fit(n); });
       kick();
     };
-    img.src = asset(it.src);
+    img.src = thumb(it.src); // petite version : la grille n'a pas besoin de plus
     preloadBox.appendChild(img);
   });
 
