@@ -37,7 +37,7 @@ const PROJECTS = [
     type: { en: 'Exhibition website', fr: 'Site d’exposition' },
     date: { en: 'April 2026', fr: 'Avril 2026' },
     tools: 'HTML, CSS, JavaScript',
-    cover: 'essences.webp',
+    cover: 'essences/cover-wood.webp', // bois et ombre
     hero: 'essences/essencesbg.webp',
     desc: {
       en: "I created a website for a fictional exhibition during a redesign project for the museum 'La Maison du Bois et du Jouet' in Mazamet. The concept of this exhibition is to showcase traditional toys created from wood from their country of origin.",
@@ -67,7 +67,7 @@ const PROJECTS = [
     type: { en: 'Skincare branding', fr: 'Branding cosmétique' },
     date: { en: 'December 2025', fr: 'Décembre 2025' },
     tools: 'WordPress, Photoshop',
-    cover: 'rosalyaa.webp',
+    cover: 'rosalya.webp', // 1re photo du projet
     hero: 'rosalya.webp',
     url: 'https://bdk5185a.mmiweb.iut-tlse3.fr/rosalya/',
     desc: {
@@ -99,7 +99,7 @@ const PROJECTS = [
     type: { en: 'Identity & website mockup', fr: 'Identité & maquette de site' },
     date: { en: 'May 2025', fr: 'Mai 2025' },
     tools: 'Figma, Photoshop, Illustrator',
-    cover: 'cyberjazz.webp',
+    cover: 'cyberjazz/cover-solene.webp', // Solene
     hero: 'ab6761860000eab1677ef678b75e1cc6b2d89535.webp',
     desc: {
       en: 'In this project, I designed a logo and website mockup for an imagined musical genre called Cyberjazz. The visual identity reflects a fusion of retro jazz aesthetics and futuristic digital influences. I discovered this genre through the work of Solène Velvet, an American singer-songwriter known for blending jazz, lo-fi and cyberpunk influences in what she calls “cyber jazz.”',

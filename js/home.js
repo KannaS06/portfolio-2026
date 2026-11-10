@@ -11,7 +11,6 @@
   strip.innerHTML = entries.map((p, i) => `
     <a class="card" href="${href(p)}" data-i="${i}" data-label="${p.name}" data-cursor="view" style="--d:${0.3 + i * 0.12}s">
       <div class="card-info">
-        <div class="ci-idx">(${pad(i)})</div>
         <div>${p.type}</div>
         <div class="ci-type">${p.date} · ${p.tools}</div>
       </div>

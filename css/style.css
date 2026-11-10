@@ -124,7 +124,7 @@ html.loaded .split .ch { animation: chIn 1.3s var(--ease-out) calc(var(--d, 0s) 
   position: fixed; left: 0; right: 0; z-index: 50;
   display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 6px; align-items: start;
   padding: var(--edge);
-  font-family: var(--sans); font-weight: 500; font-size: 10px; line-height: 1.2; letter-spacing: 0.01em; text-transform: uppercase;
+  font-family: var(--sans); font-weight: 500; font-size: 12px; line-height: 1.2; letter-spacing: 0.01em; text-transform: uppercase;
   color: #fff; mix-blend-mode: difference;
   pointer-events: none;
 }
@@ -231,7 +231,6 @@ html.theme-tr::view-transition-new(root) { animation: none; mix-blend-mode: norm
 .card.active .card-info > :nth-child(1) { transition-delay: .4s; }
 .card.active .card-info > :nth-child(2) { transition-delay: .5s; }
 .card.active .card-info > :nth-child(3) { transition-delay: .6s; }
-.card-info .ci-idx { color: var(--accent-ink); margin-bottom: 12px; }
 .card-info .ci-type { color: var(--muted); }
 
 .home-statement {
@@ -368,15 +367,18 @@ html.loaded .pg-item.ready .pg-in { opacity: 1; filter: none; transition-delay: 
 .pg-hint { opacity: .6; }
 .pg-hint b { font-weight: 500; }
 
+/* Curseur du playground : un point + l'étiquette "(Drag)" / "(Open)" */
 .cursor {
   position: fixed; left: 0; top: 0; z-index: 70; pointer-events: none;
-  width: 66px; height: 66px; margin: -33px 0 0 -33px; border-radius: 50%;
-  background: var(--accent);
-  color: #18161c; display: grid; place-items: center; font-size: 9px;
+  margin: -8px 0 0 -3px; height: 16px; padding-left: 17px;
+  background: radial-gradient(circle at 3px 50%, #fff 2.6px, transparent 3.2px) no-repeat;
+  color: #fff; mix-blend-mode: difference; white-space: nowrap;
+  font-family: var(--sans); font-size: 12px; font-weight: 500; line-height: 16px; letter-spacing: .01em; text-transform: uppercase;
   transform: translate3d(-200px, -200px, 0);
-  transition: width .5s var(--ease-out), height .5s var(--ease-out), margin .5s var(--ease-out), opacity .4s;
+  transition: color .3s, opacity .4s;
 }
-.cursor.small { width: 10px; height: 10px; margin: -5px 0 0 -5px; color: transparent; }
+.cursor::before { content: "("; } .cursor::after { content: ")"; }
+.cursor.small { color: transparent; }
 .cursor.hide { opacity: 0; }
 @media (hover: none), (pointer: coarse) { .cursor { display: none; } }
 
@@ -501,9 +503,12 @@ html.has-cursor.c-text input, html.has-cursor.c-text textarea { cursor: text !im
 }
 .c-ring span { opacity: 0; transition: opacity .25s; }
 .c-ring.is-link { width: 48px; height: 48px; margin: -24px 0 0 -24px; background: color-mix(in srgb, var(--accent) 22%, transparent); }
-.c-ring.is-view { width: 76px; height: 76px; margin: -38px 0 0 -38px; background: var(--accent); border-color: var(--accent); }
+/* Sur un projet : l'anneau disparaît, une étiquette "(View)" suit le point */
+.c-ring.is-view { width: 6px; height: 6px; margin: -3px 0 0 -3px; border-color: transparent; background: transparent; mix-blend-mode: difference; }
+.c-ring span { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); white-space: nowrap;
+  font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: .01em; text-transform: uppercase; color: #fff; }
+.c-ring span::before { content: "("; } .c-ring span::after { content: ")"; }
 .c-ring.is-view span { opacity: 1; transition-delay: .1s; }
-.c-ring.is-view + .c-dot { opacity: 0; }
 .c-ring.is-down { width: 22px; height: 22px; margin: -11px 0 0 -11px; }
 html.c-out .c-dot, html.c-out .c-ring, html.c-text .c-ring { opacity: 0; }
 
