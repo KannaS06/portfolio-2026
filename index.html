@@ -17,8 +17,7 @@
     <a href="index.html" class="brand rv" style="--d:.1s" data-label="Index">Kaola Abidi</a>
     <nav class="hd-nav rv" style="--d:.3s"><a class="ulink" href="about.html" data-label="About" data-i18n="navAbout">About</a><a class="ulink" href="playground.html" data-label="Playground" data-i18n="navGraphic">Graphic design</a></nav>
   </header>
-  <main class="home" id="home">
-    <!-- Layout 1 : bande horizontale -->
+  <main class="home" id="home" data-layout="slider">
     <section class="home-slider" id="slider">
       <div class="home-stage">
         <p class="home-intro-m rv" data-i18n="homeIntro"><span class="accent">(Selected works)</span><br>Graphic &amp; web design student, ©2026</p>
@@ -28,19 +27,9 @@
       <p class="home-statement fd" style="--d:1.1s" data-i18n="homeStatement">Minimal, intentional <em>digital identities</em> — between branding, editorial and the web.</p>
     </section>
 
-    <!-- Layout 2 : diagonale -->
-    <section class="home-diag" id="diag">
-      <div class="dg-line" id="dgList"></div>
-    </section>
   </main>
 
   <footer class="site-footer">
-    <div class="ft-mid layout-switch rv" style="--d:1.2s" role="group">
-      <span class="ft-dim" data-i18n="layoutLabel">View</span>
-      <button class="ulink" data-layout="slider" data-i18n="layoutSlider">Slider</button>
-      <span class="ft-dim">/</span>
-      <button class="ulink" data-layout="diagonal" data-i18n="layoutDiagonal">Diagonal</button>
-    </div>
     <button class="ft-contact ulink rv" style="--d:1.3s" data-contact data-i18n="navContact">Contact</button>
   </footer>
   <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>

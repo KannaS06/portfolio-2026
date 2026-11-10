@@ -251,49 +251,6 @@ html.theme-tr::view-transition-new(root) { animation: none; mix-blend-mode: norm
 .home-list a.active::before { content: "● "; color: var(--accent); font-size: 7px; vertical-align: 2px; }
 .home-intro-m { display: none; }
 
-/* ---------- Deux affichages : bande / grille ---------- */
-.home[data-layout="slider"] .home-diag { display: none; }
-.home[data-layout="diagonal"] .home-slider { display: none; }
-.home > section { transition: opacity .45s var(--soft), filter .45s var(--soft), transform .6s var(--ease-out); }
-.home.switching > section { opacity: 0; filter: blur(10px); transform: translateY(14px); }
-
-.layout-switch { display: flex; gap: 8px; align-items: baseline; }
-.layout-switch button { color: inherit; opacity: .5; transition: opacity .4s; }
-.layout-switch button:hover, .layout-switch button.on { opacity: 1; }
-.layout-switch button.on::before { content: "● "; font-size: 7px; vertical-align: 2px; }
-
-/* ---------- Diagonale : vignettes en escalier (façon cathydolle.com) ---------- */
-.home-diag { position: absolute; inset: 0; overflow: hidden; }
-.dg-line { position: absolute; inset: 0; }
-.dg-item {
-  --w: clamp(56px, 5.4vw, 92px); --h: calc(var(--w) * 1.32);
-  --sx: clamp(70px, 8.2vw, 140px); --sy: clamp(50px, 7.4vh, 86px);
-  --zoom: 2.5;
-  position: absolute; z-index: 1; width: var(--w); height: var(--h);
-  left: calc(50% + var(--k) * var(--sx) - var(--w) / 2);
-  top: calc(50% + var(--k) * var(--sy) - var(--h) / 2);
-}
-.dg-ph {
-  display: block; width: 100%; height: 100%; overflow: hidden; background: var(--accent-soft);
-  transition: transform 1s var(--ease), opacity .6s var(--soft);
-}
-.dg-ph img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) opacity(.85); transition: filter .8s var(--soft); }
-.dg-item.active { z-index: 3; }
-.dg-item.active .dg-ph { transform: scale(var(--zoom)); }
-.dg-item.active img { filter: none; }
-.dg-line.has-active .dg-item:not(.active) .dg-ph { opacity: .3; }
-.dg-label {
-  position: absolute; top: 50%; left: calc(50% + var(--w) * var(--zoom) / 2 + 18px);
-  width: max-content; max-width: 280px; display: grid; gap: 6px; pointer-events: none;
-  opacity: 0; filter: blur(6px); transform: translate(-8px, -50%);
-  transition: opacity .35s, filter .4s, transform .6s var(--ease-out);
-}
-.dg-item.active .dg-label { opacity: 1; filter: none; transform: translate(0, -50%); transition-delay: .3s; }
-.dg-name { font-family: var(--title); font-size: clamp(30px, 3.2vw, 52px); line-height: .95; }
-.dg-type { color: var(--muted); }
-/* apparition une par une le long de la diagonale */
-html:not(.loaded) .dg-item { visibility: hidden; }
-html.loaded .home[data-layout="diagonal"] .dg-ph { animation: cardIn 1s var(--ease) var(--d) backwards; }
 
 /* =============================================================
    PAGE PROJET
@@ -636,13 +593,6 @@ html.has-music .lang-toggle { margin-left: -19px; }
   .pg-hint { opacity: .6; }
   .ft-copy { display: none; }
 
-  /* Accueil, diagonale : vignettes plus grandes, nom du côté où il y a de la place */
-  .home[data-layout="diagonal"] { height: 100svh; min-height: 0; }
-  .dg-item { --w: 19vw; --sx: 13.5vw; --sy: 9.5svh; --zoom: 1.9; }
-  /* le nom du projet actif s'affiche en légende sous la diagonale */
-  .dg-label { position: fixed; top: auto; left: var(--gutter); right: var(--gutter); bottom: 118px; max-width: none; text-align: left; transform: translateY(8px); }
-  .dg-item.active .dg-label { transform: none; }
-  .dg-name { font-size: clamp(26px, 8vw, 40px); }
   .home-stage { padding-bottom: 24px; }
   .home-slider { padding-bottom: 150px; }
   .strip { scroll-padding-inline: var(--gutter); }
@@ -665,7 +615,7 @@ html.has-music .lang-toggle { margin-left: -19px; }
 }
 
 /* Écrans tactiles : pas de survol, donc images directement en couleur */
-@media (hover: none) { .dg-ph img { filter: grayscale(.4); } }
+
 
 /* Header & footer sur téléphone : nom à gauche, liens à droite */
 @media (max-width: 560px) {
