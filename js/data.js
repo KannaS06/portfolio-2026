@@ -69,7 +69,7 @@ const PROJECTS = [
     tools: 'WordPress, Photoshop',
     cover: 'rosalya.webp', // 1re photo du projet
     hero: 'rosalya.webp',
-    url: 'https://bdk5185a.mmiweb.iut-tlse3.fr/rosalya/',
+    url: 'https://rosalya-ruddy.vercel.app/',
     desc: {
       en: 'Rosalya is a branding project developed around a clean and minimalist skincare concept. The identity combines soft tones, refined typography and thoughtful composition to express a gentle, modern and cruelty-free approach to beauty.',
       fr: 'Rosalya est un projet de branding développé autour d’un concept de soin de la peau épuré et minimaliste. L’identité associe des tons doux, une typographie raffinée et une composition soignée pour exprimer une approche de la beauté douce, moderne et cruelty-free.',
@@ -85,7 +85,7 @@ const PROJECTS = [
     tools: 'Bootstrap',
     cover: 'yeng.webp',
     hero: 'yengbg.webp',
-    url: 'https://bdk5185a.mmiweb.iut-tlse3.fr/yeng',
+    url: 'https://yeng-ivory.vercel.app/',
     desc: {
       en: 'Yeyoung Choi (yeng_p on Instagram) is a self-taught photographer with a seductive color palette and an eccentricity to her work. I decided to create a modern portfolio for her.',
       fr: 'Yeyoung Choi (yeng_p sur Instagram) est une photographe autodidacte à la palette de couleurs envoûtante et au travail excentrique. J’ai décidé de lui créer un portfolio moderne.',
