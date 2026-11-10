@@ -23,6 +23,13 @@ const CONTACT = {
   cv: 'mon-cv.pdf', // ton CV, dans assets/
 };
 
+/* Musique de fond : mets tes fichiers MP3 dans assets/music/
+   puis ajoute une ligne par morceau. Tant que la liste est vide,
+   le bouton musique n'apparaît pas.
+   Exemple : { title: 'Nom du morceau', artist: 'Artiste', src: 'music/morceau.mp3' }, */
+const MUSIC = [
+];
+
 const PROJECTS = [
   {
     id: 'essences',

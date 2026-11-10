@@ -29,7 +29,7 @@
     <section class="p-media">
       <figure class="p-hero reveal">${img(p.hero || p.cover, p.name, true)}</figure>
       ${p.desktop.map((s, k) => `<figure class="reveal">${img(s, `${p.name} — desktop ${k + 1}`, k === 0)}</figure>`).join('')}
-      <div class="p-label reveal"><span>(Responsive)</span><span class="muted">Mobile — ${p.mobile.length} ${t('pScreens')}</span></div>
+      <div class="p-label reveal"><span>(Responsive)</span></div>
       <div class="p-mobiles">
         ${p.mobile.map((s, k) => `<figure class="reveal" style="transition-delay:${k * 110}ms">${img(s, `${p.name} — mobile ${k + 1}`)}</figure>`).join('')}
       </div>

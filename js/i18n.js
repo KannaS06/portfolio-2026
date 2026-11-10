@@ -33,7 +33,10 @@ const STR = {
     fr: 'Des <em>identités numériques</em> minimalistes et réfléchies — entre branding, édition et web.',
   },
   homeProjects: { en: 'Projects', fr: 'Projets' },
-  homeGraphic: { en: 'Graphic design', fr: 'Design graphique' }, // lien vers le playground, en bas à droite
+  navGraphic: { en: 'Graphic design', fr: 'Design graphique' }, // lien vers le playground, dans l'en-tête
+  layoutLabel: { en: 'View', fr: 'Affichage' },
+  layoutSlider: { en: 'Slider', fr: 'Bande' },
+  layoutGrid: { en: 'Grid', fr: 'Grille' },
 
   // À propos
   titleAbout: { en: 'About — Kaola Abidi', fr: 'À propos — Kaola Abidi' },
@@ -69,7 +72,6 @@ const STR = {
   pTools: { en: 'Tools', fr: 'Outils' },
   pType: { en: 'Type', fr: 'Type' },
   pVisit: { en: 'Visit the website ↗', fr: 'Voir le site ↗' },
-  pScreens: { en: 'screens', fr: 'écrans' },
   pPrev: { en: '← Previous', fr: '← Précédent' },
   pNext: { en: 'Next →', fr: 'Suivant →' },
 
@@ -92,12 +94,32 @@ const STR = {
   close: { en: '(Close)', fr: '(Fermer)' },
 
   // Panneau contact
-  cpTitle: { en: 'Let’s <span>connect</span>', fr: 'Prenons <span>contact</span>' },
+  cpTitle: { en: 'Let’s <span>connect</span>', fr: '<span>Contact</span>' },
   cpPhone: { en: 'Phone', fr: 'Téléphone' },
   cpResume: { en: 'Resume', fr: 'CV' },
   cpDownload: { en: 'Download PDF ↗', fr: 'Télécharger le PDF ↗' },
   cpCopied: { en: 'Copied', fr: 'Copié' },
   cpOpen: { en: 'Open to internships & work-study', fr: 'À la recherche d’un stage ou d’une alternance' },
+
+  // Formulaire de contact
+  cfName: { en: 'Name', fr: 'Nom' },
+  cfMessage: { en: 'Message', fr: 'Message' },
+  cfSend: { en: 'Send', fr: 'Envoyer' },
+  cfCheck: { en: 'Please check the highlighted fields.', fr: 'Vérifie les champs en rouge.' },
+  cfSending: { en: 'Sending…', fr: 'Envoi…' },
+  cfSent: { en: 'Message sent — thank you.', fr: 'Message envoyé — merci.' },
+  cfError: { en: 'Something went wrong. Write to me at', fr: 'Un souci est survenu. Écris-moi à' },
+
+  // Curseur
+  cursorView: { en: 'View', fr: 'Voir' },
+
+  // Musique
+  musicOpen: { en: 'Music', fr: 'Musique' },
+  musicNow: { en: '(Now playing)', fr: '(En écoute)' },
+  musicPlay: { en: 'Play', fr: 'Lecture' },
+  musicPause: { en: 'Pause', fr: 'Pause' },
+  musicPrev: { en: 'Previous track', fr: 'Morceau précédent' },
+  musicNext: { en: 'Next track', fr: 'Morceau suivant' },
 };
 
 // Texte d'interface par sa clé

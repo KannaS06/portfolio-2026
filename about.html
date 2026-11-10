@@ -4,17 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title data-i18n="titleAbout">About — Kaola Abidi</title>
-  <script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.classList.add('js')})()</script>
+  <script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;document.documentElement.classList.add('js');try{if(sessionStorage.getItem('nav')){sessionStorage.removeItem('nav');document.documentElement.classList.add('from-nav')}}catch(e){}})()</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="About">
+  <div class="loader" aria-hidden="true"><div class="ld-inner"><span class="ld-logo">Kaola Abidi</span><div class="ld-track"><div class="ld-fill" data-ld-bar></div></div></div></div>
   <header class="site-header">
     <a href="index.html" class="brand rv" style="--d:.1s" data-label="Index">Kaola Abidi</a>
     <a href="index.html" class="hd-mid ulink rv" style="--d:.2s" data-label="Index" data-i18n="back">(Back)</a>
-    <nav class="rv" style="--d:.3s"><a class="ulink" href="about.html" data-label="About" data-i18n="navAbout">About</a><button class="ulink" data-contact data-i18n="navContact">Contact</button></nav>
+    <nav class="rv" style="--d:.3s"><a class="ulink" href="about.html" data-label="About" data-i18n="navAbout">About</a><a class="ulink" href="playground.html" data-label="Playground" data-i18n="navGraphic">Graphic design</a><button class="ulink" data-contact data-i18n="navContact">Contact</button></nav>
   </header>
 
   <main class="ab">
