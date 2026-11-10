@@ -164,7 +164,7 @@
     const scale = dpr * 1.5;
     const c = document.createElement('canvas');
     const ctx = c.getContext('2d');
-    const font = `400 ${FONT_PX * scale}px "JetBrains Mono", monospace`;
+    const font = `400 ${FONT_PX * scale}px "Inter Tight", sans-serif`;
     ctx.font = font;
     if ('letterSpacing' in ctx) ctx.letterSpacing = `${0.4 * scale}px`;
     const w = Math.ceil(ctx.measureText(text).width + (dot ? 10 * scale : 0)) + 2;
@@ -356,7 +356,7 @@
   // Changement de thème : nouvelles couleurs et légendes
   new MutationObserver(() => { readColors(); buildCaptions(); }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
   // La police des légendes peut arriver après le premier rendu
-  if (document.fonts) document.fonts.load(`${FONT_PX}px "JetBrains Mono"`).then(() => buildCaptions()).catch(() => {});
+  if (document.fonts) document.fonts.load(`${FONT_PX}px "Inter Tight"`).then(() => buildCaptions()).catch(() => {});
 
   /* ---------- Survol / clic : quel item est sous le curseur ? ---------- */
   function hit(cx, cy) {
