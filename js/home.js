@@ -1,14 +1,13 @@
 /* Accueil : deux affichages des projets
    - "slider" : bande horizontale, la carte survolée s'agrandit
-   - "vertical" : un projet par écran, image + titre géant
+   - "diagonal" : vignettes en escalier, celle survolée grandit
    Le choix est gardé d'une visite à l'autre. */
 (() => {
   const root = document.documentElement;
   const home = document.getElementById('home');
   const strip = document.getElementById('strip');
   const list = document.getElementById('homeList');
-  const vList = document.getElementById('vList');
-  const vNav = document.getElementById('vNav');
+  const dgList = document.getElementById('dgList');
   const entries = PROJECTS;
   const pad = (i) => String(i + 1).padStart(2, '0');
   const href = (p) => `project.html?id=${p.id}`;
@@ -30,65 +29,42 @@
   list.innerHTML = entries.map((p, i) =>
     `<a class="rv" href="${href(p)}" data-i="${i}" data-label="${p.name}" style="--d:${0.6 + i * 0.06}s">${p.name}</a>`).join('');
 
-  /* ---------- Layout 2 : vertical, un projet par écran ---------- */
-  const total = pad(entries.length - 1);
-  vList.innerHTML = entries.map((p, i) => `
-    <article class="hv-item" data-i="${i}">
-      <div class="hv-meta">
-        <span class="accent">(${pad(i)}) / ${total}</span>
-        <span>${p.type}</span>
-        <span class="muted">${year(p)}</span>
-      </div>
-      <a class="hv-ph" href="${href(p)}" data-label="${p.name}" data-cursor="view" aria-label="${p.name}">
-        <img src="${asset(p.cover)}" alt="${p.name}" decoding="async" ${i === 0 ? 'data-critical' : 'loading="lazy"'}>
-      </a>
-      <h2 class="hv-name" data-split>${p.name}</h2>
-      ${i === 0 ? `<span class="hv-hint muted">↓ ${t('scrollHint')}</span>` : ''}
-    </article>`).join('');
-  vList.querySelectorAll('[data-split]').forEach(splitChars);
-
-  vNav.innerHTML = entries.map((p, i) => `<button data-i="${i}">${p.name}</button>`).join('');
-  const vItems = [...vList.children];
-  const vBtns = [...vNav.children];
-  vBtns.forEach((b) => b.addEventListener('click', () => {
-    const el = vItems[+b.dataset.i];
-    if (window.lenis) window.lenis.scrollTo(el, { duration: 1.6 }); else el.scrollIntoView({ behavior: 'smooth' });
-  }));
-
-  // Projet à l'écran : son titre apparaît, il est surligné dans la liste
-  if ('IntersectionObserver' in window) {
-    const vio = new IntersectionObserver((list) => list.forEach((en) => {
-      if (!en.isIntersecting) return;
-      en.target.classList.add('in');
-      const i = +en.target.dataset.i;
-      vBtns.forEach((b, k) => b.classList.toggle('on', k === i));
-    }), { threshold: 0.55 });
-    const go = () => vItems.forEach((el) => vio.observe(el));
-    root.classList.contains('loaded') ? go() : document.addEventListener('site:loaded', go, { once: true });
-  } else vItems.forEach((el) => el.classList.add('in'));
-
-  // Profondeur : l'image glisse légèrement moins vite que la page
-  let pRaf = 0;
-  const parallax = () => {
-    pRaf = 0;
-    if (layout !== 'vertical') return;
-    const vh = innerHeight;
-    vItems.forEach((el) => {
-      const r = el.getBoundingClientRect();
-      if (r.bottom < -100 || r.top > vh + 100) return;
-      const p = (r.top + r.height / 2 - vh / 2) / vh; // -1 → 1 autour du centre de l'écran
-      el.style.setProperty('--py', (p * 12).toFixed(2) + '%');
-      el.style.setProperty('--ps', (1.12 - Math.min(Math.abs(p), 1) * 0.08).toFixed(3));
-    });
+  /* ---------- Layout 2 : diagonale (façon cathydolle.com) ----------
+     Les vignettes en escalier ; celle qu'on survole grandit, passe en
+     couleur et affiche son nom. Sur écran tactile, elles défilent seules. */
+  const mid = (entries.length - 1) / 2;
+  dgList.innerHTML = entries.map((p, i) => `
+    <a class="dg-item" href="${href(p)}" data-i="${i}" data-side="${i > mid ? 'l' : 'r'}" data-label="${p.name}" data-cursor="view" style="--k:${i - mid};--d:${0.25 + i * 0.12}s">
+      <span class="dg-ph"><img src="${thumb(p.cover)}" alt="${p.name}" decoding="async"></span>
+      <span class="dg-label"><span class="accent">(${pad(i)})</span><span class="dg-name">${p.name}</span><span class="dg-type">${p.type} — ${year(p)}</span></span>
+    </a>`).join('');
+  const dItems = [...dgList.children];
+  let dActive = -1;
+  const setDiag = (i) => {
+    dActive = i;
+    dItems.forEach((el, k) => el.classList.toggle('active', k === i));
+    dgList.classList.toggle('has-active', i >= 0);
   };
-  addEventListener('scroll', () => { if (!pRaf) pRaf = requestAnimationFrame(parallax); }, { passive: true });
-  addEventListener('resize', parallax);
+  const touch = matchMedia('(hover: none)').matches;
+  dItems.forEach((el) => {
+    el.addEventListener('mouseenter', () => !touch && setDiag(+el.dataset.i));
+    el.addEventListener('mouseleave', () => !touch && setDiag(-1));
+    el.addEventListener('focus', () => setDiag(+el.dataset.i));
+  });
+  let cycle = 0;
+  function startCycle() {
+    if (!touch || cycle) return;
+    if (!root.classList.contains('loaded')) return document.addEventListener('site:loaded', startCycle, { once: true });
+    let i = 0;
+    setTimeout(() => setDiag(0), 900);
+    cycle = setInterval(() => { if (layout === 'diagonal') { i = (i + 1) % entries.length; setDiag(i); } }, 2400);
+  }
 
   /* ---------- Bascule entre les deux ---------- */
   const switchBtns = [...document.querySelectorAll('[data-layout]')];
   let layout = 'slider';
-  // (l'ancienne valeur "grid" renvoie vers le vertical)
-  try { layout = /^(grid|vertical)$/.test(localStorage.getItem('home-layout') || '') ? 'vertical' : 'slider'; } catch (e) {}
+  // (les anciennes valeurs "grid" / "vertical" renvoient vers la diagonale)
+  try { layout = /^(grid|vertical|diagonal)$/.test(localStorage.getItem('home-layout') || '') ? 'diagonal' : 'slider'; } catch (e) {}
 
   function applyLayout(next, animate) {
     const go = () => {
@@ -98,7 +74,7 @@
       try { localStorage.setItem('home-layout', next); } catch (e) {}
       scrollTo(0, 0);
       if (window.lenis) window.lenis.scrollTo(0, { immediate: true });
-      if (next === 'slider') startActive(); else requestAnimationFrame(parallax);
+      if (next === 'slider') startActive(); else startCycle();
     };
     if (!animate) return go();
     home.classList.add('switching');
@@ -144,21 +120,28 @@
     el.addEventListener('click', remember);
   });
 
-  // Molette / flèches : projet suivant (bande, sur ordinateur)
+  // Molette / flèches : projet suivant (bande ou diagonale, sur ordinateur)
+  const n = entries.length;
+  const step = (dir) => {
+    if (layout === 'slider') setActive(active + dir);
+    else setDiag(dActive < 0 ? (dir > 0 ? 0 : n - 1) : (dActive + dir + n) % n);
+  };
   let lock = 0;
   addEventListener('wheel', (e) => {
-    if (!desktop.matches || layout !== 'slider') return;
+    if (!desktop.matches) return;
     const d = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
     if (Math.abs(d) < 8 || performance.now() < lock) return;
     lock = performance.now() + 520;
-    setActive(active + (d > 0 ? 1 : -1));
+    step(d > 0 ? 1 : -1);
   }, { passive: true });
 
   addEventListener('keydown', (e) => {
-    if (layout !== 'slider') return;
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') setActive(active + 1);
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') setActive(active - 1);
-    if (e.key === 'Enter' && document.activeElement === document.body) { remember(); leaveTo(cards[active].href, entries[active].name); }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') step(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') step(-1);
+    if (e.key === 'Enter' && document.activeElement === document.body) {
+      if (layout === 'slider') { remember(); leaveTo(cards[active].href, entries[active].name); }
+      else if (dActive >= 0) leaveTo(dItems[dActive].href, entries[dActive].name);
+    }
   });
 
   // Léger parallaxe de la bande avec la souris (ordinateur)
