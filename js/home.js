@@ -1,13 +1,14 @@
 /* Accueil : deux affichages des projets
    - "slider" : bande horizontale, la carte survolée s'agrandit
-   - "grid"   : grille éditoriale
+   - "vertical" : un projet par écran, image + titre géant
    Le choix est gardé d'une visite à l'autre. */
 (() => {
   const root = document.documentElement;
   const home = document.getElementById('home');
   const strip = document.getElementById('strip');
   const list = document.getElementById('homeList');
-  const gridList = document.getElementById('gridList');
+  const vList = document.getElementById('vList');
+  const vNav = document.getElementById('vNav');
   const entries = PROJECTS;
   const pad = (i) => String(i + 1).padStart(2, '0');
   const href = (p) => `project.html?id=${p.id}`;
@@ -29,21 +30,65 @@
   list.innerHTML = entries.map((p, i) =>
     `<a class="rv" href="${href(p)}" data-i="${i}" data-label="${p.name}" style="--d:${0.6 + i * 0.06}s">${p.name}</a>`).join('');
 
-  /* ---------- Layout 2 : la grille ---------- */
-  gridList.innerHTML = entries.map((p, i) => `
-    <a class="hg-item" href="${href(p)}" data-label="${p.name}" data-cursor="view" style="--d:${0.25 + i * 0.1}s">
-      <div class="hg-ph"><img src="${thumb(p.cover)}" alt="${p.name}" decoding="async" loading="lazy"></div>
-      <div class="hg-meta">
-        <span class="accent">(${pad(i)})</span>
-        <span><span class="hg-name">${p.name}</span><span class="muted hg-type">${p.type}</span></span>
+  /* ---------- Layout 2 : vertical, un projet par écran ---------- */
+  const total = pad(entries.length - 1);
+  vList.innerHTML = entries.map((p, i) => `
+    <article class="hv-item" data-i="${i}">
+      <div class="hv-meta">
+        <span class="accent">(${pad(i)}) / ${total}</span>
+        <span>${p.type}</span>
         <span class="muted">${year(p)}</span>
       </div>
-    </a>`).join('');
+      <a class="hv-ph" href="${href(p)}" data-label="${p.name}" data-cursor="view" aria-label="${p.name}">
+        <img src="${asset(p.cover)}" alt="${p.name}" decoding="async" ${i === 0 ? 'data-critical' : 'loading="lazy"'}>
+      </a>
+      <h2 class="hv-name" data-split>${p.name}</h2>
+      ${i === 0 ? `<span class="hv-hint muted">↓ ${t('scrollHint')}</span>` : ''}
+    </article>`).join('');
+  vList.querySelectorAll('[data-split]').forEach(splitChars);
+
+  vNav.innerHTML = entries.map((p, i) => `<button data-i="${i}">${p.name}</button>`).join('');
+  const vItems = [...vList.children];
+  const vBtns = [...vNav.children];
+  vBtns.forEach((b) => b.addEventListener('click', () => {
+    const el = vItems[+b.dataset.i];
+    if (window.lenis) window.lenis.scrollTo(el, { duration: 1.6 }); else el.scrollIntoView({ behavior: 'smooth' });
+  }));
+
+  // Projet à l'écran : son titre apparaît, il est surligné dans la liste
+  if ('IntersectionObserver' in window) {
+    const vio = new IntersectionObserver((list) => list.forEach((en) => {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('in');
+      const i = +en.target.dataset.i;
+      vBtns.forEach((b, k) => b.classList.toggle('on', k === i));
+    }), { threshold: 0.55 });
+    const go = () => vItems.forEach((el) => vio.observe(el));
+    root.classList.contains('loaded') ? go() : document.addEventListener('site:loaded', go, { once: true });
+  } else vItems.forEach((el) => el.classList.add('in'));
+
+  // Profondeur : l'image glisse légèrement moins vite que la page
+  let pRaf = 0;
+  const parallax = () => {
+    pRaf = 0;
+    if (layout !== 'vertical') return;
+    const vh = innerHeight;
+    vItems.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const p = (r.top + r.height / 2 - vh / 2) / vh; // -1 → 1 autour du centre de l'écran
+      el.style.setProperty('--py', (p * 12).toFixed(2) + '%');
+      el.style.setProperty('--ps', (1.12 - Math.min(Math.abs(p), 1) * 0.08).toFixed(3));
+    });
+  };
+  addEventListener('scroll', () => { if (!pRaf) pRaf = requestAnimationFrame(parallax); }, { passive: true });
+  addEventListener('resize', parallax);
 
   /* ---------- Bascule entre les deux ---------- */
   const switchBtns = [...document.querySelectorAll('[data-layout]')];
   let layout = 'slider';
-  try { layout = localStorage.getItem('home-layout') === 'grid' ? 'grid' : 'slider'; } catch (e) {}
+  // (l'ancienne valeur "grid" renvoie vers le vertical)
+  try { layout = /^(grid|vertical)$/.test(localStorage.getItem('home-layout') || '') ? 'vertical' : 'slider'; } catch (e) {}
 
   function applyLayout(next, animate) {
     const go = () => {
@@ -53,7 +98,7 @@
       try { localStorage.setItem('home-layout', next); } catch (e) {}
       scrollTo(0, 0);
       if (window.lenis) window.lenis.scrollTo(0, { immediate: true });
-      if (next === 'slider') startActive();
+      if (next === 'slider') startActive(); else requestAnimationFrame(parallax);
     };
     if (!animate) return go();
     home.classList.add('switching');
@@ -130,6 +175,4 @@
     }, { passive: true });
   }
 
-  // Grille : apparition des projets au scroll
-  observeReveal([...gridList.children]);
 })();

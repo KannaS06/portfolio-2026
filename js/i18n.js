@@ -36,7 +36,8 @@ const STR = {
   navGraphic: { en: 'Graphic design', fr: 'Design graphique' }, // lien vers le playground, dans l'en-tête
   layoutLabel: { en: 'View', fr: 'Affichage' },
   layoutSlider: { en: 'Slider', fr: 'Bande' },
-  layoutGrid: { en: 'Grid', fr: 'Grille' },
+  layoutVertical: { en: 'Vertical', fr: 'Vertical' },
+  scrollHint: { en: 'Scroll', fr: 'Défiler' },
 
   // À propos
   titleAbout: { en: 'About — Kaola Abidi', fr: 'À propos — Kaola Abidi' },
