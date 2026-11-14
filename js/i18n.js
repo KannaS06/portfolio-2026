@@ -22,7 +22,6 @@ const STR = {
   themeSwitch: { en: 'Change theme', fr: 'Changer de thème' },
 
   // Accueil
-  titleHome: { en: 'Kaola Abidi — Portfolio', fr: 'Kaola Abidi — Portfolio' },
   homeTagline: { en: '(Graphic &amp; Web Design)', fr: '(Design graphique &amp; web)' },
   homeIntro: {
     en: '<span class="accent">(Selected works)</span><br>Graphic &amp; web design student, ©2026',
@@ -36,7 +35,6 @@ const STR = {
   navGraphic: { en: 'Graphic design', fr: 'Design graphique' }, // lien vers le playground, dans l'en-tête
 
   // À propos
-  titleAbout: { en: 'About — Kaola Abidi', fr: 'À propos — Kaola Abidi' },
   abKicker: {
     en: '<span class="accent">(About)</span><span class="muted">Graphic &amp; web design student — MMI</span>',
     fr: '<span class="accent">(À propos)</span><span class="muted">Études en design graphique &amp; web — MMI</span>',
@@ -73,7 +71,6 @@ const STR = {
   pNext: { en: 'Next →', fr: 'Suivant →' },
 
   // Playground
-  titlePlayground: { en: 'Playground — Kaola Abidi', fr: 'Playground — Kaola Abidi' },
   pgHint: {
     en: '<b>(Drag)</b> to explore — <b>(Click)</b> to open',
     fr: '<b>(Glisser)</b> pour explorer — <b>(Cliquer)</b> pour ouvrir',

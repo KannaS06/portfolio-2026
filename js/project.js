@@ -11,7 +11,6 @@
     ? `<video data-src="${asset(src)}" poster="${asset(src.replace(/\.mp4$/i, '.webp'))}" muted loop playsinline preload="none" aria-label="${alt}"></video>`
     : `<img src="${asset(src)}" alt="${alt}" decoding="async" ${critical ? 'data-critical' : 'loading="lazy"'}>`;
 
-  document.title = `${p.name} — Kaola Abidi`;
   document.body.dataset.page = p.name;
 
   document.getElementById('project').innerHTML = `
