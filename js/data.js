@@ -66,13 +66,13 @@ const PROJECTS = [
     name: 'Rosalya',
     type: { en: 'Skincare branding', fr: 'Branding cosmétique' },
     date: { en: 'December 2025', fr: 'Décembre 2025' },
-    tools: 'HTML, CSS, JavaScript',
+    tools: 'WordPress, Photoshop',
     cover: 'rosalya.webp', // 1re photo du projet
     hero: 'rosalya.webp',
     url: 'https://rosalya-ruddy.vercel.app/',
     desc: {
-      en: 'Rosalya is a branding project developed around a clean and minimalist skincare concept. The identity combines soft tones, refined typography and thoughtful composition to express a gentle, modern and cruelty-free approach to beauty. First built on WordPress, the website was then fully redesigned and hand-coded: a calm online shop with a clear product grid, ingredient-first product pages and a light cart.',
-      fr: 'Rosalya est un projet de branding développé autour d’un concept de soin de la peau épuré et minimaliste. L’identité associe des tons doux, une typographie raffinée et une composition soignée pour exprimer une approche de la beauté douce, moderne et cruelty-free. D’abord créé sous WordPress, le site a ensuite été entièrement repensé et codé à la main : une boutique calme, une grille de produits claire, des fiches centrées sur les ingrédients et un panier léger.',
+      en: 'Rosalya is a branding project developed around a clean and minimalist skincare concept. The identity combines soft tones, refined typography and thoughtful composition to express a gentle, modern and cruelty-free approach to beauty.',
+      fr: 'Rosalya est un projet de branding développé autour d’un concept de soin de la peau épuré et minimaliste. L’identité associe des tons doux, une typographie raffinée et une composition soignée pour exprimer une approche de la beauté douce, moderne et cruelty-free.',
     },
     desktop: ['rosalya/refonte-01-accueil.mp4', 'rosalya/refonte-desktop-4.webp', 'rosalya/refonte-02-boutique.mp4', 'rosalya/refonte-desktop-contact.webp', 'rosalya/refonte-03-produit.mp4'],
     mobile: ['rosalya/refonte-mobile-1.webp', 'rosalya/refonte-mobile-2.webp', 'rosalya/refonte-mobile-3.webp', 'rosalya/refonte-mobile-4.webp'],
